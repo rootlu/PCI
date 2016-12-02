@@ -226,7 +226,7 @@ def rotate_matrix(data):
     """
     转置数据
     :param data:
-    :return:
+    :return: 转置后的数据集
     """
     new_data = []
     for i in range(len(data[0])):
