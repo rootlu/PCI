@@ -1,0 +1,4 @@
+http://rootlu.com/atom.xml
+http://blog.csdn.net/yuanziok/rss/list
+http://blog.csdn.net/yinwenjie/rss/list
+http://blog.csdn.net/swingwang/rss/list
