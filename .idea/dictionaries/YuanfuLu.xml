@@ -2,6 +2,7 @@
   <dictionary name="YuanfuLu">
     <words>
       <w>apcount</w>
+      <w>avgs</w>
       <w>bicluster</w>
       <w>blogclust</w>
       <w>clust</w>
@@ -11,6 +12,8 @@
       <w>frac</w>
       <w>hcluster</w>
       <w>initialze</w>
+      <w>kclust</w>
+      <w>kcluster</w>
       <w>luyf</w>
       <w>peasrson</w>
       <w>prefs</w>

@@ -4,6 +4,7 @@
 
 from math import sqrt
 from PIL import Image, ImageDraw
+import random
 
 
 class Bicluster:
@@ -234,6 +235,55 @@ def rotate_matrix(data):
         new_data.append(new_row)
     return new_data
 
+
+def kcluster(rows, similarity=pearson, k=4):
+    """
+    k-均值聚类
+    :param rows: 数据集
+    :param similarity:相似度算法
+    :param k: 期望的聚类数
+    :return:
+    """
+    # 确定每一个点的最小值和最大值  每个单词在所有博客中出现的最多次数和最少次数
+    min_max_ranges = [(min([row[i] for row in rows]), max([row[i] for row in rows]))
+                      for i in range(len(rows[0]))]  # len(rows[0])即为单词数量
+
+    # 随机创建k个中心点
+    k_clusters = [[random.random()*(min_max_ranges[i][1]-min_max_ranges[i][0]) + min_max_ranges[i][0]
+                   for i in range(len(rows[0]))] for j in range(k)]
+
+    last_matches = None
+    for t in range(100):
+        print 'Iteration %d ' % t
+        best_matches_list = [[] for i in range(k)]
+
+        # 在每一行中寻找距离最近的中心点
+        for j in range(len(rows)):
+            row = rows[j]
+            best_match = 0
+            for i in range(k):
+                d =similarity(k_clusters[i], row)
+                if d < similarity(k_clusters[best_match], row):
+                    best_match = i
+            best_matches_list[best_match].append(j)
+
+        # 如果结果与上一次相同，则整个过程结束
+        if best_matches_list == last_matches:
+            break
+        last_matches = best_matches_list
+
+        # 把中心转移到其他所有成员的平均位置处
+        for i in range(k):
+            avgs = [0.0]*len(rows[0])
+            if len(best_matches_list[i])>0:
+                for row_id in best_matches_list[i]:
+                    for m in range(len(rows[row_id])):
+                        avgs[m] += rows[row_id][m]
+                for j in range(len(avgs)):
+                    avgs[j] /=len(best_matches_list[i])
+                k_clusters[i] = avgs
+    return best_matches_list
+
 blog_names_list, words_list, data_list = read_file('blog_data.txt')
 
 # 分级聚类
@@ -242,6 +292,12 @@ blog_names_list, words_list, data_list = read_file('blog_data.txt')
 # draw_dendrogram(clust, blog_names_list, jpeg='blogclust.jpg')
 
 # 列聚类
-rotate_data_list = rotate_matrix(data_list)
-word_clust = hcluster(rotate_data_list)
-draw_dendrogram(word_clust, labels=words_list, jpeg='wordclust.jpg')
+# rotate_data_list = rotate_matrix(data_list)
+# word_clust = hcluster(rotate_data_list)
+# draw_dendrogram(word_clust, labels=words_list, jpeg='wordclust.jpg')
+
+# k-均值聚类
+print len(data_list)
+kclust = kcluster(data_list, k=2)
+print kclust
+print [blog_names_list[r] for r in kclust[0]]
