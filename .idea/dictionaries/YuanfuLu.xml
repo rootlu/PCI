@@ -10,16 +10,31 @@
       <w>dendrogram</w>
       <w>feedlist</w>
       <w>frac</w>
+      <w>fromid</w>
       <w>hcluster</w>
+      <w>hiddennode</w>
+      <w>hiddenurl</w>
       <w>initialze</w>
       <w>kclust</w>
       <w>kcluster</w>
+      <w>linkid</w>
+      <w>linkwords</w>
       <w>luyf</w>
+      <w>lxml</w>
       <w>peasrson</w>
       <w>prefs</w>
+      <w>rootlu</w>
       <w>sima</w>
+      <w>toid</w>
       <w>tsegaran</w>
+      <w>urlid</w>
+      <w>urllist</w>
       <w>wordclust</w>
+      <w>wordhidden</w>
+      <w>wordid</w>
+      <w>wordidx</w>
+      <w>wordlist</w>
+      <w>wordlocation</w>
     </words>
   </dictionary>
 </component>
