@@ -127,7 +127,7 @@ def get_recommendations(prefs, person, similarity=sim_pearson):
                 totals[item] += prefs[other][item]*sim  # scores * similarities
                 sima_sums.setdefault(item, 0)
                 sima_sums[item] += sim  # sum of all persons' similarities
-
+    # 归一化
     rankings = [(total/sima_sums[item], item) for item, total in totals.items()]
 
     rankings.sort()

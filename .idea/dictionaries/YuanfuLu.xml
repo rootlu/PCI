@@ -8,10 +8,12 @@
       <w>clust</w>
       <w>delusers</w>
       <w>dendrogram</w>
+      <w>dtanh</w>
       <w>feedlist</w>
       <w>frac</w>
       <w>fromid</w>
       <w>hcluster</w>
+      <w>hiddenid</w>
       <w>hiddennode</w>
       <w>hiddenurl</w>
       <w>initialze</w>
@@ -24,17 +26,20 @@
       <w>peasrson</w>
       <w>prefs</w>
       <w>rootlu</w>
+      <w>searchnet</w>
       <w>sima</w>
       <w>toid</w>
       <w>tsegaran</w>
       <w>urlid</w>
       <w>urllist</w>
+      <w>weigth</w>
       <w>wordclust</w>
       <w>wordhidden</w>
       <w>wordid</w>
       <w>wordidx</w>
       <w>wordlist</w>
       <w>wordlocation</w>
+      <w>worldbank</w>
     </words>
   </dictionary>
 </component>

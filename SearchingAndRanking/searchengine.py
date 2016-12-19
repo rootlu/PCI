@@ -324,7 +324,7 @@ class Searcher:
         weights = [(1.0, self.frequency_score(url_locations)),
                    (1.0, self.location_score(url_locations)),
                    (1.0, self.page_rank_score(url_locations)),
-                   (1.0, self.link_text_score(url_locations))]
+                   (1.0, self.link_text_score(url_locations, word_ids))]
         for (weight, scores) in weights:
             for url in total_scores:
                 total_scores[url] += weight*scores[url]
@@ -430,13 +430,13 @@ class Searcher:
         :param word_ids: 单词ID列表
         :return:
         """
-        link_scores = dict([(row[0], 0) for row in rows])
+        link_scores = dict([(row[0], 0.00001) for row in rows])
         for word_id in word_ids:
             cur = self.con.execute('select link.fromid, link.toid from linkwords,link '
                                    'where wordid=%d and linkwords.linkid=link.rowid' % word_id)
             for (from_id, to_id) in cur:
                 if to_id in link_scores:
-                    pr = self.con.execute('select score from pagerank where urlid=%d' % fromid).fetchone()[0]
+                    pr = self.con.execute('select score from pagerank where urlid=%d' % from_id).fetchone()[0]
                     link_scores[to_id] += pr
         max_score = max(link_scores.values())
         normalized_scores = dict([(u, float(1)/max_score) for (u, l) in link_scores.items()])
