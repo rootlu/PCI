@@ -44,7 +44,7 @@ def pearson(v1, v2):
 
 def read_file(file_name):
     """
-    记载数据文件
+    加载数据文件
     Blog    word1   word2   ...
     blog1   b1_wc1  b1_wc2  ...
     blog2   b2_wc1  b2_wc2  ...
@@ -78,12 +78,12 @@ def hcluster(rows, similarity=pearson):
 
     # 最开始的聚类就是数据集中的每一行
     clust = [Bicluster(rows[i], id=i) for i in range(len(rows))]
-    while len(clust)>1:
+    while len(clust)>1:  # 直至只剩下一个群组
         lowest_pair = (0, 1)  # 初始的两个群组
         closest = similarity(clust[0].vec, clust[1].vec)  # 计算初始两个群组间的相似度 作为 初始的 最小距离
         # 遍历每一个配对，寻找最小距离
         for i in range(len(clust)):
-            for j in range(i+1, len(clust)):  # 从第i+1开始，计算第i个群组和第i+1到最后一个群组之间的距离
+            for j in range(i+1, len(clust)):  # 从第i+1开始，计算 第i个群组 和 第i+1到最后一个群组 之间的距离
                 # 用distances来缓存距离的计算值
                 if(clust[i].id, clust[j].id) not in distances:  # 还未计算i，j之间的距离
                     distances[(clust[i].id, clust[j].id)] = similarity(clust[i].vec, clust[j].vec)
